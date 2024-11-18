@@ -31,3 +31,9 @@ PUT http://localhost/tpecsrestful/api/api/jugador/[ID JUGADOR]
 
 # Autorizacion
 ### Para poder editar (PUT), insertar (POST) el usuario debe estar autorizado, para esto el usuario a traves del endpoint GET /auth/token debe hacer una "Basic Auth" ingresando usuario (web admin) y password (admin). Una vez consiguida la token, el usuario debe ingresar a "Headers" e ingresar "Authorization" en el campo "Key" y Bearer {token obtenida} en el campo Value, y ademas en la pestana "Authorization" seleccionar "Bearer Token" e ingresar el token. Una vez seguido estos pasos el usuario podra editar (PUT), insertar (POST) durante una hora, una vez pasado el tiempo tendra que repetir el proceso de autorizacion.
+
+
+
+
+Lalloz Nahuel (B)
+Banda Martin (A)
