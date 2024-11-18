@@ -7,7 +7,7 @@
 ### GET http://localhost:/tpecsrestful/api/api/jugador?show=x&page=x (Show= numero de jugadores | Page= numero de pagina)
 ### GET http://localhost:80/tpecsrestful/api/api/jugador?orderBy=
 
-#SERVICIO POST
+# SERVICIO POST
 
  INSERT http://localhost/tpecsrestful/api/api/equipo
      {
@@ -17,7 +17,7 @@
     }
 
 
-#SERVICIO PUT
+# SERVICIO PUT
 PUT http://localhost/tpecsrestful/api/api/jugador/[ID JUGADOR]
 {
     "nombre_jugador": "NOMBRE",
