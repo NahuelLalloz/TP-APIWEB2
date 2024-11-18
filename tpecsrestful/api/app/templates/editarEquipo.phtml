@@ -1,0 +1,34 @@
+<?php require_once '../tpecs/app/models/equipomodel.php'; ?>
+
+<div class="card">
+    <div class="p-2 bd-highlight">
+        <h2>Editar Equipo</h2>
+        <form action="updateEquipo" method="POST">
+            <div class="mb-3">
+                <label for="id_equipo" class="form-label">Selecciona el equipo:</label>
+                <select name="id_equipo" class="form-select">
+                    <?php foreach ($equipos as $equipo) : ?>
+                        <option value="<?= $equipo->id_equipo ?>"><?= $equipo->nombre_equipo ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="nombre_equipo" class="form-label">Nuevo nombre del equipo:</label>
+                <input type="text" placeholder="Ingrese el nombre" name="nombre_equipo" class="form-control mb-3" required>
+
+                <label for="ranking" class="form-label">Nuevo ranking del equipo:</label>
+                <input type="number" placeholder="Ingrese el ranking" name="ranking" class="form-control mb-3" required>
+
+                <label for="region" class="form-label">Región:</label>
+                <select name="region" class="form-select mb-3" required>
+                    <option value="EU">EU</option>
+                    <option value="NA">NA</option>
+                    <option value="SA">SA</option>
+                    <option value="AS">AS</option>
+                    <option value="OTRA">OTRA</option>
+                </select>
+            </div>
+            <input type="submit" value="Editar" class="btn btn-primary">
+        </form>
+    </div>
+</div>

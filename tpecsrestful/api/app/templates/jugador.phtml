@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container mt-4">
+        <h1>Lista de jugadores</h1>
+        <table class="table table-striped text-center">
+            <tr class="table-primary">
+                <th>Nombre del Jugador</th>
+
+            </tr>
+
+            <?php foreach ($jugadores as $jugador) { ?>
+                <tr>
+                    <td class="table-light">
+                        <a href="viewJugadorDetalle/<?= $jugador->id_jugador ?>">
+                            <?= ($jugador->nombre_jugador) ?>
+                            <div class="actions">
+                                <?php if (!isset($_SESSION['USER_ID'])) : ?>
+                                    Necesitas loguearte para borrar
+                                <?php else : ?>
+                                    <a href="deleteJugadorID/<?= $jugador->id_jugador ?>" type="button" class='btn btn-danger ml-auto'>Borrar</a>
+                                <?php endif ?>
+                        </a>
+                    </td>
+
+
+                </tr>
+
+            <?php } ?>
+        </table>
+    </div>
+    <?php if (!isset($_SESSION['USER_ID'])) : ?>
+    <?php else : ?>
+        <h2>Editar Jugador</h2>
+        <form action="updateJugador/" method="POST">
+            <select name="id_jugador" class="form-select">
+                <div class="mb-3">
+                    <?php foreach ($jugadores as $jugador) : ?>
+                        <option value="<?= $jugador->id_jugador ?>"><?= $jugador->nombre_jugador ?></option>
+                    <?php endforeach; ?>
+            </select>
+            </div>
+            <div class="mb-3">
+                <label for="nombre_jugador" class="form-label">Nuevo Nombre Jugador:</label>
+                <input type="text" placeholder="Ingrese el nombre" name="nombre_jugador" class="form-control mb-3" required>
+
+                <label for="posicion" class="form-label">Posicion:</label>
+                <input type="text" placeholder="Ingrese el posicion" name="posicion" class="form-control mb-3" required>
+                <label for="kd" class="form-label">kd:</label>
+                <input type="number" placeholder="Ingrese el kd" name="kd" class="form-control mb-3" required>
+                <div class="form-group">
+                    <label>Equipo</label>
+                    <select required name="fk_equipo" class="form-control">
+                        <option value="">Seleccione un equipo</option>
+                        <?php foreach ($equipos as $equipo): ?>
+                            <option value="<?= $equipo->id_equipo ?>"><?= $equipo->nombre_equipo ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+
+
+            </div>
+            <input type="submit" value="Editar" class="btn btn-primary">
+
+        </form>
+    <?php endif ?>
+</body>
+
+</html>
+<?php if (!isset($_SESSION['USER_ID'])) : ?>
+<?php else : ?>
+    <?php require_once 'app/templates/agregarJugador.phtml' ?>
+<?php endif ?>

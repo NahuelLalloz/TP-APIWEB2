@@ -1,0 +1,17 @@
+<?php require 'app/templates/header.phtml'; ?>
+<table class="table table-stripped text-center">
+    <tr class="table-primary">
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Posición</th>
+        <th>KD</th>
+        <th>Equipo</th>
+    </tr>
+    <tr>
+        <td class="table-light"><?= $jugador->id_jugador; ?></td>
+        <td class="table-light"><?= $jugador->nombre_jugador; ?></td>
+        <td class="table-light"><?= $jugador->posicion; ?></td>
+        <td class="table-light"><?= $jugador->kd; ?></td>
+        <td class="table-light"><?= $jugador->nombre_equipo; ?></td>
+    </tr>
+</table>

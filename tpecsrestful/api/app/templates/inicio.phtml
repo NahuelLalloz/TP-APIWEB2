@@ -1,0 +1,61 @@
+<?php require_once 'app/templates/header.phtml' ?>
+<?php if (!isset($_SESSION['USER_ID'])) : ?>
+    <?php require_once 'app/templates/login.phtml' ?>
+<?php else : ?>
+    <form method="POST" action="logout">
+        <button type="submit" class="btn btn-secondary">Desloguear</button>
+    </form>
+<?php endif ?>
+
+<div class="container mt-4">
+    <?php if (!isset($_SESSION['USER_ID'])) : ?>
+        <h2 class="text-center mb-4"> Para Borrar, editar o agregar un equipo o jugador necesitas loguearte</h2>
+        <h1 class="text-center mb-4">Lista de Equipos</h1>
+    <?php else : ?>
+        <h1 class="text-center mb-4">Lista de Equipos</h1>
+    <?php endif ?>
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered align-middle">
+            <thead class="table-primary">
+                <tr>
+                    <th scope="col">Nombre del Equipo</th>
+                    <th scope="col">Accion</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (isset($equipos)) { ?>
+                    <?php foreach ($equipos as $equipo) { ?>
+                        <tr>
+                            <td class="table-light">
+                                <a href="viewEquipoDetalle/<?= $equipo->id_equipo ?>" class="text-decoration-none text-dark fw-bold">
+                                    <?= $equipo->nombre_equipo ?> <?= $equipo->id_equipo ?>
+                                </a>
+                            </td>
+
+                            <td class="table-light">
+                                <?php if (!isset($_SESSION['USER_ID'])) : ?>
+                                    <p>Necesitas loguearte para borrar</p>
+                                <?php else : ?>
+                                    <form action="delete/<?= $equipo->id_equipo ?>" method="POST">
+                                        <button type="submit" class='btn btn-danger'>Borrar</button>
+                                    </form>
+                                <?php endif ?>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                <?php } else { ?>
+                    <tr>
+                        <td colspan="2" class="text-center">No hay equipos disponibles</td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<?php if (!isset($_SESSION['USER_ID'])) : ?>
+<?php else : ?>
+    <?php require_once 'app/templates/agregarEquipo.phtml' ?>
+    <?php require_once 'app/templates/editarEquipo.phtml' ?>
+<?php endif ?>

@@ -1,0 +1,38 @@
+<?php require 'app/templates/header.phtml'; ?>
+
+<table class="table table-stripped text-center">
+    <tr class="table-primary">
+        <th>Imagen</th>
+        <th>Nombre</th>
+        <th>Ranking</th>
+        <th>Región</th>
+        <th>ID</th>
+        <th>Jugadores</th>
+    </tr>
+
+    <tr>
+        <td class="table-light">
+            <?php if (!empty($equipo->imagen_url)) { ?>
+                <img src="<?= $equipo->imagen_url ?>" alt="Imagen del equipo" width="100" height="100">
+            <?php } else { ?>
+                <p>No hay imagen disponible</p>
+            <?php } ?>
+        </td>
+        <td class="table-light"><?= $equipo->nombre_equipo ?></td>
+        <td class="table-light"><?= $equipo->ranking ?></td>
+        <td class="table-light"><?= $equipo->region ?></td>
+        <td class="table-light"><?= $equipo->id_equipo ?></td>
+
+        <td class="table-light">
+            <?php if (!empty($equipo->jugadores)) { ?>
+                <ul>
+                    <?php foreach ($equipo->jugadores as $jugador) { ?>
+                        <li><?= $jugador->nombre_jugador ?></li>
+                    <?php } ?>
+                </ul>
+            <?php } else { ?>
+                No hay jugadores asociados.
+            <?php } ?>
+        </td>
+    </tr>
+</table>
